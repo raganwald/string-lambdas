@@ -1,0 +1,25 @@
+{
+  "author": "Reg Braithwaite <raganwald@gmail.com> (http://braythwayt.com)",
+  "name": "string-lambdas",
+  "description": "Combinators and Function Decorators",
+  "version": "0.1.0",
+  "homepage": "http://github.com/raganwald/string-lambdas",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/raganwald/string-lambdas.git"
+  },
+  "main": "lib/string-lambdas.js",
+  "scripts": {
+    "test": "jasmine-node --coffee --verbose spec"
+  },
+  "engines": {
+    "node": ""
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jasmine-node": "",
+    "coffee-script": "",
+    "grunt": "~0.4.1",
+    "grunt-contrib-uglify": "~0.2.0"
+  }
+}
