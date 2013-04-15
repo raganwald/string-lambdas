@@ -16,18 +16,49 @@ describe "string lambdas with an implicit arg on the left", ->
 
       expect( minus2(10) ).toEqual -2
 
+  describe "comparators", ->
+    it "should return a predicate", ->
+      lt100 = functionalize('<100')
+      gt100 = functionalize('>100')
+      ltEq100 = functionalize('<=100')
+      gtEq100 = functionalize('>=100')
+
+      expect( lt100(50) ).toBe true
+      expect( gt100(150) ).toBe true
+      expect( lt100(150) ).toBe false
+      expect( gt100(50) ).toBe false
+
+      expect( ltEq100(50) ).toBe true
+      expect( ltEq100(100) ).toBe true
+      expect( gtEq100(150) ).toBe true
+      expect( ltEq100(100) ).toBe true
+
 describe "string lambdas with an implicit arg on the right", ->
   describe "arithmetical forms", ->
     it "should return a function", ->
       twoPlus  = functionalize('2+')
       tenOver  = functionalize('10/')
       twoTimes = functionalize('2*')
+      twoMinus = functionalize('2-')
 
       expect( twoPlus(10) ).toEqual 12
       expect( tenOver(2) ).toEqual 5
       expect( twoTimes(10) ).toEqual 20
-
-    it "should allow minus", ->
-      twoMinus = functionalize('2-')
-
       expect( twoMinus(10) ).toEqual -8
+
+  describe "comparators", ->
+    it "should return a predicate", ->
+      lt100 = functionalize('100>')
+      gt100 = functionalize('100<')
+      ltEq100 = functionalize('100>=')
+      gtEq100 = functionalize('100<=')
+
+      expect( lt100(50) ).toBe true
+      expect( gt100(150) ).toBe true
+      expect( lt100(150) ).toBe false
+      expect( gt100(50) ).toBe false
+
+      expect( ltEq100(50) ).toBe true
+      expect( ltEq100(100) ).toBe true
+      expect( gtEq100(150) ).toBe true
+      expect( ltEq100(100) ).toBe true
