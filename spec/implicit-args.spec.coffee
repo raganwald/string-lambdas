@@ -31,7 +31,7 @@ describe "string lambdas with an implicit arg on the left", ->
       expect( ltEq100(50) ).toBe true
       expect( ltEq100(100) ).toBe true
       expect( gtEq100(150) ).toBe true
-      expect( ltEq100(100) ).toBe true
+      expect( gtEq100(100) ).toBe true
 
   describe "equivalence and equality", ->
     it "should return a predicate", ->
@@ -74,7 +74,7 @@ describe "string lambdas with an implicit arg on the right", ->
       expect( ltEq100(50) ).toBe true
       expect( ltEq100(100) ).toBe true
       expect( gtEq100(150) ).toBe true
-      expect( ltEq100(100) ).toBe true
+      expect( gtEq100(100) ).toBe true
 
   describe "equivalence and equality", ->
     it "should return a predicate", ->
@@ -88,3 +88,32 @@ describe "string lambdas with an implicit arg on the right", ->
       expect( is100(100)).toBe true
       expect( is100('100')).toBe false
       expect( is100(0)).toBe false
+
+describe "string lambdas with an implicit args on both sides", ->
+  describe "arithmetical forms", ->
+    it "should return a function", ->
+      plus = functionalize('+')
+      times = functionalize('*')
+      div = functionalize('/')
+
+      expect( plus(10, 2) ).toEqual 12
+      expect( times(10, 2) ).toEqual 20
+      expect( div(10, 2) ).toEqual 5
+
+    it "should return a negation function", ->
+      minus = functionalize('-')
+      expect( minus(10) ).toEqual -10
+
+  describe "comparators", ->
+    it "should return a predicate", ->
+      lt = functionalize('<')
+      gt = functionalize('>')
+      ltEq = functionalize('<=')
+      gtEq = functionalize('>=')
+
+      expect( lt(50, 100) ).toBe true
+      expect( gt(150, 100) ).toBe true
+      expect( ltEq(50, 100) ).toBe true
+      expect( ltEq(100, 100) ).toBe true
+      expect( gtEq(150, 100) ).toBe true
+      expect( gtEq(100, 100) ).toBe true
