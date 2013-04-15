@@ -33,6 +33,19 @@ describe "string lambdas with an implicit arg on the left", ->
       expect( gtEq100(150) ).toBe true
       expect( ltEq100(100) ).toBe true
 
+  describe "equivalence and equality", ->
+    it "should return a predicate", ->
+      eq100 = functionalize('==100')
+      is100 = functionalize('===100')
+
+      expect( eq100(100)).toBe true
+      expect( eq100('100')).toBe true
+      expect( eq100(0)).toBe false
+
+      expect( is100(100)).toBe true
+      expect( is100('100')).toBe false
+      expect( is100(0)).toBe false
+
 describe "string lambdas with an implicit arg on the right", ->
   describe "arithmetical forms", ->
     it "should return a function", ->
@@ -62,3 +75,16 @@ describe "string lambdas with an implicit arg on the right", ->
       expect( ltEq100(100) ).toBe true
       expect( gtEq100(150) ).toBe true
       expect( ltEq100(100) ).toBe true
+
+  describe "equivalence and equality", ->
+    it "should return a predicate", ->
+      eq100 = functionalize('100==')
+      is100 = functionalize('100===')
+
+      expect( eq100(100)).toBe true
+      expect( eq100('100')).toBe true
+      expect( eq100(0)).toBe false
+
+      expect( is100(100)).toBe true
+      expect( is100('100')).toBe false
+      expect( is100(0)).toBe false
